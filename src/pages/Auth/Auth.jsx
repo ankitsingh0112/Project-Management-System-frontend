@@ -14,8 +14,8 @@ const Auth = () => {
                     {active ? <Signup /> : <Login />}
 
                     <div>
-                        <span>already have an account?</span>
-                        <Button variant="ghost" onClick={()=>setActive(!active)}>{active?"signin":"signup"}</Button>
+                        <span>Already have an account?</span>
+                        <Button className="p-3 ml-2 bg-pink-700 hover:bg-pink-900 text-white" onClick={()=>setActive(!active)}>{active?"Login":"Signup"}</Button>
                     </div>
                 </div>
             </div>

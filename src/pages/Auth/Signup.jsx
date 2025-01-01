@@ -22,7 +22,7 @@ const Signup = () => {
       };
   return (
     <div className='space-y-5'>
-        <h1>Register</h1>
+        <h1 className='text-center text-2xl'>Register</h1>
         <Form {...form}>
         <form className="space-y-5" onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
@@ -81,7 +81,7 @@ const Signup = () => {
             )}
           />
 
-            <Button type="submit" className="w-full mt-5">
+            <Button type="submit" className="w-full mt-5 text-md">
                 Signup
             </Button>
         </form>
