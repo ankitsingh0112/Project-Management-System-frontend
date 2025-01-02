@@ -16,6 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchIssueById, updateIssueStatus } from "@/Redux/Issue/Action";
 import { fetchComment } from "@/Redux/Comment/Action";
+import { fetchProjectById } from "@/Redux/Project/Action";
 
 const IssueDetails = () => {
   const { projectId, issueId } = useParams();
@@ -27,13 +28,14 @@ const IssueDetails = () => {
   };
   useEffect(() => {
     dispatch(fetchIssueById(issueId));
-    dispatch(fetchComment(issueId))
-  }, [issueId]);
+    dispatch(fetchComment(issueId));
+    dispatch(fetchProjectById(projectId))
+  }, [issueId, projectId]);
   return (
     <div>
-      <div className="px-20 py-8">
-        <div className="flex justify-between border p-10 rounded-lg">
-          <ScrollArea className="h-[80vh] w-[60%]">
+      <div className="lg:px-20 px-5 py-8">
+        <div className="flex flex-col-reverse lg:flex-row justify-between border lg:p-10 md:p-8 p-5 rounded-lg">
+          <ScrollArea className="h-[80vh] lg:w-[60%]">
             <div>
               <h1 className="text-3xl font-semibold">
                 {issue.issueDetails?.title}
@@ -67,7 +69,7 @@ const IssueDetails = () => {
               </div>
             </div>
           </ScrollArea>
-          <div className="w-full lg:w-[30%] space-y-2">
+          <div className="w-full lg:w-[30%] space-y-2 mb-5">
             <Select onValueChange={handleUpdateIssueStatus}>
               <SelectTrigger className="w-[180px]">
                 <SelectValue placeholder="To Do" />
@@ -88,7 +90,9 @@ const IssueDetails = () => {
                     {issue.issueDetails?.assignee?.fullName ? (
                       <div className="flex items-center gap-3">
                         <Avatar className="h-8 w-8 text-xs">
-                          <AvatarFallback>{issue.issueDetails?.assignee?.fullName[0].toUpperCase()}</AvatarFallback>
+                          <AvatarFallback>
+                            {issue.issueDetails?.assignee?.fullName[0].toUpperCase()}
+                          </AvatarFallback>
                         </Avatar>
                         <p>{issue.issueDetails?.assignee?.fullName}</p>
                       </div>
@@ -112,9 +116,11 @@ const IssueDetails = () => {
                     <p className="w-[7rem]">Project Owner:</p>
                     <div className="flex items-center gap-3">
                       <Avatar className="h-8 w-8 text-xs">
-                        <AvatarFallback>{project?.projectDetails?.owner?.fullName[0].toUpperCase()}</AvatarFallback>
+                        <AvatarFallback>
+                          {project.projectDetails?.owner.fullName[0].toUpperCase()}
+                        </AvatarFallback>
                       </Avatar>
-                      <p>{project?.projectDetails?.owner?.fullName}</p>
+                      <p>{project.projectDetails?.owner.fullName}</p>
                     </div>
                   </div>
                 </div>

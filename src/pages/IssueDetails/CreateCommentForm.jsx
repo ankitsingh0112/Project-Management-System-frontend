@@ -29,7 +29,7 @@ const CreateCommentForm = ({ issueId }) => {
     <div>
       <Form {...form}>
         <form
-          className="flex gap-2"
+          className="flex gap-2 flex-wrap lg:flex-nowrap"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <FormField
@@ -47,7 +47,7 @@ const CreateCommentForm = ({ issueId }) => {
                     <Input
                       {...field}
                       type="text"
-                      className="w-[20rem]"
+                      className="lg:w-[20rem] w-full"
                       placeholder="add comment here..."
                     />
                   </FormControl>
@@ -57,7 +57,7 @@ const CreateCommentForm = ({ issueId }) => {
             )}
           />
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="lg:w-full w-[7rem]">
             comment
           </Button>
         </form>
